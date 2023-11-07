@@ -17,32 +17,32 @@ if [[ -n ${exec_time//[0-9]/} ]]; then
     exit 1
 fi
 
-gnome-terminal -x roscore & sleep 5s
+xfce4-terminal -x roscore & sleep 5s
 
 ################# CONNECT ARDUINO #################
-gnome-terminal -x rosrun rosserial_python serial_node.py $2
+xfce4-terminal -x rosrun rosserial_python serial_node.py $2
 
 ################# KNOWLEDGE REPOSITORY #################
-gnome-terminal --working-directory=${bsn}/configurations/knowledge_repository -e 'roslaunch --pid=/var/tmp/data_access.pid data_access.launch' & sleep 1s
+xfce4-terminal --working-directory=${bsn}/configurations/knowledge_repository -e 'roslaunch --pid=/var/tmp/data_access.pid data_access.launch' & sleep 1s
 
 ################# MANAGER SYSTEM #################
-gnome-terminal --working-directory=${bsn}/configurations/system_manager -e 'roslaunch --pid=/var/tmp/strategy_manager.pid strategy_manager.launch' & sleep 7s
+xfce4-terminal --working-directory=${bsn}/configurations/system_manager -e 'roslaunch --pid=/var/tmp/strategy_manager.pid strategy_manager.launch' & sleep 7s
 
-gnome-terminal --working-directory=${bsn}/configurations/system_manager -e 'roslaunch --pid=/var/tmp/strategy_enactor.pid strategy_enactor.launch' & sleep 1s
+xfce4-terminal --working-directory=${bsn}/configurations/system_manager -e 'roslaunch --pid=/var/tmp/strategy_enactor.pid strategy_enactor.launch' & sleep 1s
 
 ################# LOGGING INFRASTRUCTURE #################
-gnome-terminal --working-directory=${bsn}/configurations/logging_infrastructure -e 'roslaunch --pid=/var/tmp/logger.pid logger.launch' & sleep 1s
+xfce4-terminal --working-directory=${bsn}/configurations/logging_infrastructure -e 'roslaunch --pid=/var/tmp/logger.pid logger.launch' & sleep 1s
 
 ################# APPLICATION #################
-gnome-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/probe.pid probe.launch' & sleep 1s
-gnome-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/effector.pid effector.launch' & sleep 1s
+xfce4-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/probe.pid probe.launch' & sleep 1s
+xfce4-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/effector.pid effector.launch' & sleep 1s
 
-gnome-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/g4t1.pid g4t1.launch'
-gnome-terminal --working-directory=${bsn}/configurations/environment   -e 'roslaunch --pid=/var/tmp/patient.pid patient.launch' & sleep 5s
+xfce4-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/g4t1.pid g4t1.launch'
+xfce4-terminal --working-directory=${bsn}/configurations/environment   -e 'roslaunch --pid=/var/tmp/patient.pid patient.launch' & sleep 5s
 
-gnome-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/g3t1_1.pid real_sensor_g3t1_1.launch' & sleep 2s
-gnome-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/g3t1_2.pid real_sensor_g3t1_2.launch' & sleep 2s
-gnome-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/g3t1_3.pid real_sensor_g3t1_3.launch' & sleep 2s
+xfce4-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/g3t1_1.pid real_sensor_g3t1_1.launch' & sleep 2s
+xfce4-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/g3t1_2.pid real_sensor_g3t1_2.launch' & sleep 2s
+xfce4-terminal --working-directory=${bsn}/configurations/target_system -e 'roslaunch --pid=/var/tmp/g3t1_3.pid real_sensor_g3t1_3.launch' & sleep 2s
 
 ################# SIMULATION #################
 sleep ${exec_time}s
